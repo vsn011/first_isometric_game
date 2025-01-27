@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk61l1ivsgtku"]
+
+[ext_resource type="Script" path="res://assets/UI/gui.gd" id="1_f16sa"]
+[ext_resource type="Texture2D" uid="uid://buc8wqtf7k1br" path="res://assets/UI/HeartSpriteSheet.png" id="1_y7soa"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_f16sa")
+
+[node name="heart" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("1_y7soa")
+hframes = 5

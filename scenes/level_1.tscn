@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqc1psxxgy4vu"]
+[gd_scene load_steps=6 format=3 uid="uid://dqc1psxxgy4vu"]
 
+[ext_resource type="PackedScene" uid="uid://bk61l1ivsgtku" path="res://assets/UI/gui.tscn" id="1_4tpof"]
 [ext_resource type="PackedScene" uid="uid://bll4tcm66vowf" path="res://scenes/player.tscn" id="1_7e2xp"]
+[ext_resource type="TileSet" uid="uid://chqp8nqk8sair" path="res://assets/Tileset/ground_tileset.tres" id="1_uy7l7"]
 [ext_resource type="PackedScene" uid="uid://jt7883ke0k5g" path="res://scenes/crates.tscn" id="2_oysfh"]
+[ext_resource type="PackedScene" uid="uid://cmqjdxmta5vol" path="res://assets/UI/spike_trap.tscn" id="4_2ps42"]
 
 [node name="level_1" type="Node2D"]
 y_sort_enabled = true
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="ground" type="TileMapLayer" parent="Tilemap"]
+tile_set = ExtResource("1_uy7l7")
+
+[node name="GUI" parent="." instance=ExtResource("1_4tpof")]
 
 [node name="Player" parent="." instance=ExtResource("1_7e2xp")]
 
@@ -13,3 +23,6 @@ zoom = Vector2(4, 4)
 
 [node name="Crates" parent="." instance=ExtResource("2_oysfh")]
 position = Vector2(76, 37)
+
+[node name="spike_trap" parent="." instance=ExtResource("4_2ps42")]
+position = Vector2(76, 8)

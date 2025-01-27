@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmqjdxmta5vol"]
+
+[ext_resource type="Script" path="res://assets/Interactables/Hazards/spike_trap.gd" id="1_g2pwg"]
+[ext_resource type="Texture2D" uid="uid://bujkc2efsrhn3" path="res://assets/Interactables/Hazards/spike_trap.png" id="2_vnmio"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5plpl"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_j8gr0"]
+resource_name = "Active"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_fv541"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vb83v"]
+_data = {
+"Active": SubResource("Animation_j8gr0"),
+"RESET": SubResource("Animation_fv541")
+}
+
+[node name="spike_trap" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_g2pwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vnmio")
+hframes = 9
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5plpl")
+disabled = true
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vb83v")
+}
+autoplay = "Active"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
