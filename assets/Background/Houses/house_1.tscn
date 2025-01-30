@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://t435nttyaf2r"]
+
+[ext_resource type="Script" path="res://assets/Background/Houses/house_1.gd" id="1_8lnpo"]
+[ext_resource type="Texture2D" uid="uid://bp8bro0af4hjd" path="res://assets/Background/Houses/house_1.png" id="1_e1hf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqrul"]
+size = Vector2(130, 64)
+
+[node name="house_1" type="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.960784)
+collision_mask = 2
+script = ExtResource("1_8lnpo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e1hf4")
+hframes = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+y_sort_enabled = true
+polygon = PackedVector2Array(-82, 37, 3, 8, 44, 12, 67, 49, 4, 80, -23, 67, -22, 53, 1, 32, -23, 30, -58, 49)
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(1, -30)
+shape = SubResource("RectangleShape2D_oqrul")
+debug_color = Color(0.894107, 0.130936, 0.714251, 0.42)
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]
