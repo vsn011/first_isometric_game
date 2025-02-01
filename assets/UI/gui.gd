@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+	$coin_label.text = var_to_str(player_data.coin_number)
 	for heart in $heart.get_children():
 		var index = heart.get_index()
 		var x = (index % heart_row_size) * heart_offset

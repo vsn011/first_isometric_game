@@ -1,7 +1,13 @@
-[gd_scene load_steps=48 format=3 uid="uid://bll4tcm66vowf"]
+[gd_scene load_steps=50 format=3 uid="uid://bll4tcm66vowf"]
 
 [ext_resource type="Texture2D" uid="uid://dq64fiajyx8ix" path="res://assets/Entities/Player/isometric_player_1.png" id="1_8t61e"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fu5r8"]
+[ext_resource type="Shader" path="res://assets/Entities/Player/hurt.gdshader" id="2_a6221"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ew8jo"]
+shader = ExtResource("2_a6221")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="Animation" id="Animation_0j4bf"]
 length = 0.001
@@ -701,6 +707,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_fu5r8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ew8jo")
 texture = ExtResource("1_8t61e")
 hframes = 8
 vframes = 16
@@ -719,7 +726,7 @@ shape = SubResource("CircleShape2D_hqrng")
 [node name="sword" type="Area2D" parent="." groups=["Sword"]]
 y_sort_enabled = true
 collision_layer = 8
-collision_mask = 4
+collision_mask = 20
 
 [node name="sword_collider" type="CollisionShape2D" parent="sword"]
 position = Vector2(14, 5)
@@ -727,9 +734,9 @@ shape = SubResource("RectangleShape2D_bgdgh")
 disabled = true
 debug_color = Color(0.921067, 0.246498, 0.347112, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="hurtbox_collider" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CircleShape2D_sb2f5")
 debug_color = Color(0.31924, 0.61253, 0.363718, 0.42)
 
@@ -742,3 +749,5 @@ parameters/attack/blend_position = Vector2(0.297297, 0)
 parameters/die/blend_position = Vector2(0, 0)
 parameters/idle/blend_position = Vector2(0.144674, 0.0106382)
 parameters/move/blend_position = Vector2(0.198728, 0)
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk61l1ivsgtku"]
+[gd_scene load_steps=4 format=3 uid="uid://bk61l1ivsgtku"]
 
 [ext_resource type="Script" path="res://assets/UI/gui.gd" id="1_f16sa"]
 [ext_resource type="Texture2D" uid="uid://buc8wqtf7k1br" path="res://assets/UI/HeartSpriteSheet.png" id="1_y7soa"]
+[ext_resource type="Texture2D" uid="uid://s2xa44ono211" path="res://assets/Interactables/Coin/coin.png" id="3_vj2f0"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_f16sa")
@@ -11,3 +12,16 @@ position = Vector2(32, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("1_y7soa")
 hframes = 5
+
+[node name="Coins" type="Sprite2D" parent="."]
+position = Vector2(32, 72)
+scale = Vector2(2, 2)
+texture = ExtResource("3_vj2f0")
+hframes = 12
+
+[node name="coin_label" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 46.0
+offset_right = 128.0
+offset_bottom = 69.0
+scale = Vector2(2, 2)
