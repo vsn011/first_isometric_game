@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var coin_loot = preload("res://assets/Interactables/Coin/coins.tscn")
 var current_direction: Vector2 = Vector2()
 var change_direction 
 var health: int = 1
@@ -61,7 +62,6 @@ func _on_timer_timeout() -> void:
 
 func change_path():
 	change_direction = randi() % 4
-	print(change_direction)
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
@@ -70,10 +70,16 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		
 func set_death():
 	$anim.play("dead_down")
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.3).timeout
+	on_coin_loot()
 	queue_free()
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_data.health -= 1
+
+func on_coin_loot():
+	var coin = coin_loot.instantiate()
+	coin.position = global_position
+	get_tree().get_root().add_child(coin)

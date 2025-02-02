@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://jt7883ke0k5g"]
 
 [ext_resource type="Script" path="res://scripts/crates.gd" id="1_04yb0"]
-[ext_resource type="Texture2D" uid="uid://djgbencktj28" path="res://assets/Interactables/Crates/crate_isometric.png" id="1_wai1t"]
+[ext_resource type="Texture2D" uid="uid://ba2uq1xiye0f2" path="res://assets/Interactables/Crates/crate_isometric.png" id="1_wai1t"]
 
 [sub_resource type="Animation" id="Animation_uaxi1"]
 resource_name = "Active"
